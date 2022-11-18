@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getPosts, getPostById } from "./redux/reducer";
 
 function App() {
+  const { allNews, singleNews } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>{singleNews.id}</h2>
+      {allNews.map((post, index) => (
+        <div key={post.id} onClick={() => dispatch(getPostById(post.id))}>
+          <h1>{post.title}</h1> <strong>{post.body}</strong>{" "}
+          <p>{post.userId}</p>
+        </div>
+      ))}
     </div>
   );
 }

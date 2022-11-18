@@ -1,0 +1,10 @@
+{
+  "news": [],
+  "users": [
+    {
+      "username": "admin",
+      "password": "12345",
+      "id": 1
+    }
+  ]
+}
